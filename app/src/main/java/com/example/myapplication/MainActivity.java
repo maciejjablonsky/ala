@@ -13,6 +13,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle paczka) {
         super.onCreate(paczka);
         setContentView(R.layout.activity_main);
+
+        if (paczka != null) {
+            sekundy = paczka.getInt("sekundy");
+            realizowany = paczka.getBoolean("realizacja");
+            byl_uruchomiony = paczka.getBoolean("poprzednio");
+        }
+        runStopper();
     }
 
     @Override
