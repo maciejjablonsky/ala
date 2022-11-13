@@ -32,13 +32,19 @@ public class MainActivity extends AppCompatActivity {
         paczka.putBoolean("poprzednio", byl_uruchomiony);
     }
 
-    private void runStoper(){
+    private void runStoper() {
         TextView wyswietlacz = findViewById(R.id.tekst);
         final Handler uchwyt = new Handler();
         uchwyt.post(new Runnable() {
             @Override
             public void run() {
-                // kod metody a w nim również metoda postDelayed
+                int godziny = sekundy / 3600;
+                int minuty = (sekundy % 3600) / 60;
+                int sek = sekundy % 60;
+                String czas = String.format("%d:%02d:%02d", godziny, minuty, sek);
+                wyswietlacz.setText(czas);
+                if (realizowany) sekundy++;
+                uchwyt.postDelayed(this, 1000);
             }
         });
     }
