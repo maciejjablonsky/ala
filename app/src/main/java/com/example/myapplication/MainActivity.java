@@ -4,12 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private int sekundy = 0;
     private boolean realizowany = false;
-    private boolean byl_uruchomiony = false;
+    private boolean byl_uruchomiony = true;
 
     @Override
     protected void onCreate(Bundle paczka) {
@@ -49,5 +50,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        byl_uruchomiony = realizowany;
+        realizowany = false;
+        Log.v("kom.2",
+                "onPause wywołana");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (byl_uruchomiony) realizowany = true;
+        Log.v("kom.1",
+                "onResume wywołana");
+
+    }
 
 }
