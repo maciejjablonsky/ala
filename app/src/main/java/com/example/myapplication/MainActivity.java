@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private int sekundy = 0;
@@ -19,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
             realizowany = paczka.getBoolean("realizacja");
             byl_uruchomiony = paczka.getBoolean("poprzednio");
         }
-        runStopper();
+        runStoper();
     }
 
     @Override
@@ -29,4 +31,17 @@ public class MainActivity extends AppCompatActivity {
         paczka.putBoolean("realizacja", realizowany);
         paczka.putBoolean("poprzednio", byl_uruchomiony);
     }
+
+    private void runStoper(){
+        TextView wyswietlacz = findViewById(R.id.tekst);
+        final Handler uchwyt = new Handler();
+        uchwyt.post(new Runnable() {
+            @Override
+            public void run() {
+                // kod metody a w nim również metoda postDelayed
+            }
+        });
+    }
+
+
 }
